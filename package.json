@@ -1,0 +1,38 @@
+{
+  "name": "gunsmith.quest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && tsc-alias",
+    "clean": "npm ci",
+    "start": "node dist/app.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec npx ts-node src/app.ts",
+    "lint": "eslint src//**/*.ts"
+  },
+  "keywords": [],
+  "author": "fiffe",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.14",
+    "dotenv": "^17.2.0",
+    "eslint": "^9.31.0",
+    "express": "^5.1.0",
+    "install": "^0.13.0",
+    "nodemon": "^3.1.10",
+    "npm": "^10.8.2",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0"
+  }
+}
