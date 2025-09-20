@@ -4,7 +4,7 @@ import { database } from "@stores/database_interface";
 export const getPartsList = (req: Request, res: Response, next: NextFunction) => {
     try {
         let wrapper : any = {};
-        wrapper.parts = database.questPartsStore.getAllItemIds();
+        wrapper.parts = database.questPartsStore.getAllItemIds().sort((a: number, b: number) => a - b);
 
         res.set("Cache-Control", "max-age=28800, immutable")
         res.json(wrapper);
