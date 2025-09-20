@@ -37,14 +37,16 @@ export default class SearchStore extends Store<SearchItem> {
 
                     weaponBuild.variants.forEach((weaponBuildVariant: WeaponBuildVariant) => {
                         weaponBuildVariant.parts.forEach((itemOption: ItemOption) => {
-                            itemOption.items.forEach((item: Item) => {
-                                if(item) {
-                                    let itemSearch = searchItems.get(item.slug);
+                            itemOption.items.forEach((items: Item[]) => {
+                                items.forEach((item: Item) => {
+                                    if(item) {
+                                        let itemSearch = searchItems.get(item.slug);
 
-                                    if (itemSearch && itemSearch.questParts.indexOf(questPart.id) < 0) {
-                                        itemSearch.questParts.push(questPart.id);
+                                        if (itemSearch && itemSearch.questParts.indexOf(questPart.id) < 0) {
+                                            itemSearch.questParts.push(questPart.id);
+                                        }
                                     }
-                                }
+                                })
                             });
                         });
                     });

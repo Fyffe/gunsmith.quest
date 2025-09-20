@@ -24,25 +24,42 @@ export default class QuestPartsStore extends Store<QuestPart> {
             for(const build of jsonData.builds) {
                 let buildVariants : WeaponBuildVariant[] = [];
 
+
+
+
                 for(const partsSet of build.parts) {
                     let partsSets : ItemOption[] = [];
 
                     for(const partOption of partsSet) {
-                        let partOptions : Item[] = [];
+                        let partOptions : Item[][] = [];
 
                         if(Array.isArray(partOption)) {
-                            for(const part of partOption) {
-                                const item = database.itemsStore.getItem(part);
+                            for(const innerOptions of partOption) {
+                                if(Array.isArray(innerOptions)) {
+                                    let innerParts : Item[] = [];
 
-                                if(item) {
-                                    partOptions.push(item);
+                                    for(const innerPart of innerOptions) {
+                                        const item = database.itemsStore.getItem(innerPart);
+
+                                        if(item) {
+                                            innerParts.push(item);
+                                        }
+                                    }
+
+                                    partOptions.push(innerParts);
+                                } else {
+                                    const item = database.itemsStore.getItem(innerOptions);
+
+                                    if(item) {
+                                        partOptions.push([item]);
+                                    }
                                 }
                             }
                         } else {
                             const item = database.itemsStore.getItem(partOption);
 
                             if(item) {
-                                partOptions.push(item);
+                                partOptions.push([item]);
                             }
                         }
 
